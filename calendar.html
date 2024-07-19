@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            background-color: #fffefe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+        .calendar{
+            width:80%;
+            height:35vh;
+            background: #eff1f1;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .nxt,.pre{
+            width:50px;
+            height:50px;
+            border:none;
+            color:black;
+            background-color: azure;
+            border-radius: 100%;
+            cursor: pointer;
+        }
+        .paper{
+            width:50%;
+            height:34vh;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+            align-items: center;
+        }
+        .day{
+            font-size: 1.7em;
+            background: orange;
+            width:100%;
+            text-align: center;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            font-weight: 900;
+        }
+        .date{
+            font-size: 2.1em;
+            font-weight: 600;
+        }
+        .month{
+            font-size: 2em;
+        }
+        .year{
+            font-size: 1.7em;
+            background: #eff1f1;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar">
+        <button class="nxt" id="nxbtn"><-</button>
+        <div class="paper" id="paper">
+            <div class="day" id="day">
+               MONDAY
+            </div>
+            <div class="date" id="date">
+                17
+            </div>
+            <div class="month" id="mon">
+                January
+            </div>
+            <div class="year" id="year">
+                2024
+            </div>
+        </div>
+        <button class="pre" id="prbtn">-></button>
+    </div>
+    <script>
+        let nxt=document.getElementById("nxbtn");
+        let pre=document.getElementById("prbtn");
+        let date=new Date();
+        let rday=document.getElementById("day");
+        let rdate=document.getElementById("date");
+        let rmonth=document.getElementById("mon");
+        let ryear=document.getElementById("year");
+        let day=date.getDay();
+        let dat=date.getDate();
+        let month=date.getMonth();
+        let year=date.getFullYear();
+        function dayfix(day){
+        switch(day){
+            case 1:
+                rday.innerHTML="MONDAY";
+                rday.style.background="violet";
+                break;
+            case 2:
+                rday.innerHTML="TUESDAY";
+                rday.style.background="indigo";
+                break;
+            case 3:
+                rday.innerHTML="WEDSDAY";
+                rday.style.background="blue";
+                break;
+            case 4:
+                rday.innerHTML="THURSDAY";
+                rday.style.background="lightgreen";
+                break;
+            case 5:
+                rday.innerHTML="FRIDAY";
+                rday.style.background="yellow";
+                break;
+            case 6:
+                rday.innerHTML="SATURDAY";
+                rday.style.background="orange";
+                break;
+            case 0:
+                rday.innerHTML="SUNDAY";
+                rday.style.background="red";
+                break;
+        }
+        }
+        function datefix(dat){
+            rdate.innerHTML=dat;
+        }
+        function monthfix(month){
+            switch(month){
+                case 0:
+                    rmonth.innerHTML="January";
+                    break;
+                case 1:
+                    rmonth.innerHTML="Febrauary";
+                    break;
+                case 2:
+                    rmonth.innerHTML="March";
+                    break;
+                case 3:
+                    rmonth.innerHTML="April";
+                    break;
+                case 4:
+                    rmonth.innerHTML="May";
+                    break;
+                case 5:
+                    rmonth.innerHTML="June";
+                    break;
+                case 6:
+                    rmonth.innerHTML="July";
+                    break;
+                case 7:
+                    rmonth.innerHTML="August";
+                    break;
+                case 8:
+                    rmonth.innerHTML="September";
+                    break;
+                case 9:
+                    rmonth.innerHTML="October";
+                    break;
+                case 10:
+                    rmonth.innerHTML="November";
+                    break;
+                case 11:
+                    rmonth.innerHTML="December";
+                    break;
+            }
+        }
+        function yearfix(year){
+            ryear.innerHTML=year;
+        }
+        dayfix(day);
+        datefix(dat);
+        monthfix(month);
+        yearfix(year);
+        function display(day,dat,month,year){
+        dayfix(day);
+        datefix(dat);
+        monthfix(month);
+        yearfix(year);
+    }
+        pre.addEventListener('click',()=>{
+            date.setDate(date.getDate()+1);
+            display(date.getDay(),date.getDate(),date.getMonth(),date.getFullYear());
+        });
+        nxt.addEventListener('click',()=>{
+            date.setDate(date.getDate()-1);
+        display(date.getDay(),date.getDate(),date.getMonth(),date.getFullYear());
+        console.log(date.getDay());
+        console.log(dat);
+        console.log(month);
+        console.log(year);
+        });
+         
+    </script>
+</body>
+</html>
